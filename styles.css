@@ -1,61 +1,39 @@
-/* Statische Gestaltung. Keine Nutzerdaten und keine Download-Skripte.
-   App-eigene Container-Keys begrenzen die Layoutanpassungen. */
-:root { --ink: #242424; --accent: #F4C542; --line: #deded8; }
-.stMainBlockContainer { max-width: 960px; padding-top: 2rem; padding-bottom: 2rem; }
-h1 { color: var(--ink); letter-spacing: -.045em; font-weight: 750; }
-.stMainBlockContainer h3 { font-size: 1.15rem; letter-spacing: -.02em; }
-.stMainBlockContainer h4 { font-size: 1rem; padding-top: 0; }
-[data-testid="stVerticalBlock"] { gap: .75rem; }
-.st-key-person_details, .st-key-contract_details, .st-key-optional_details {
-    background: #FFFFFF; border-radius: 12px; border-color: var(--line);
+/* App-owned st-key classes and semantic HTML/ARIA selectors only.
+   White cards stay readable even when the surrounding app is dark. */
+.st-key-contract_app { --contract-ink: #242424; --contract-muted: #595952; --contract-line: #b7b7af; max-width: 960px; margin-inline: auto; }
+.st-key-contract_app h1 { letter-spacing: -.045em; font-weight: 750; }
+.st-key-contract_app h3 { font-size: 1.1rem; line-height: 1.4; padding-block: .25rem; }
+.st-key-contract_app .contract-hint { font-size: .8125rem; line-height: 1.5; color: inherit; }
+:is(.st-key-person_details, .st-key-contract_details, .st-key-optional_details) {
+    background: #fff; color: var(--contract-ink); color-scheme: light;
+    padding: .8rem; border: 1px solid var(--contract-line); border-radius: 12px;
 }
-[data-testid="stTextInput"] input,
-[data-testid="stTextArea"] textarea,
-[data-testid="stDateInput"] input { color: var(--ink); }
-[data-testid="stTextInput"] [data-baseweb="input"],
-[data-testid="stDateInput"] [data-baseweb="input"],
-[data-testid="stSelectbox"] [data-baseweb="select"] > div,
-[data-testid="stTextInput"] input,
-[data-testid="stDateInput"] input,
-[data-testid="stSelectbox"] [role="combobox"],
-[data-testid="stTextArea"] textarea {
-    border: 1px solid var(--line); border-radius: 8px;
+:is(.st-key-person_details, .st-key-contract_details, .st-key-optional_details)
+    :is(h4, p, label, [role="group"], [role="spinbutton"], input, [role="combobox"], button) { color: var(--contract-ink); }
+:is(.st-key-person_details, .st-key-contract_details, .st-key-optional_details) h4 {
+    font-size: 1.05rem; line-height: 1.4; padding-block: .1rem .3rem; margin: 0;
 }
-[data-testid="stWidgetLabel"] p { font-size: .86rem; font-weight: 550; }
-[data-testid="stRadio"] > div[role="radiogroup"] {
-    gap: .5rem; padding: .4rem; background: var(--ink); border-radius: 12px; width: 100%;
+:is(.st-key-person_details, .st-key-contract_details, .st-key-optional_details) label p { font-size: .875rem; line-height: 1.4; font-weight: 600; }
+:is(.st-key-person_details, .st-key-contract_details, .st-key-optional_details)
+    :is(input:not([type="checkbox"]):not([type="radio"]), [role="combobox"], [role="group"]) {
+    background: #f7f7f5; font-size: 16px; /* Avoid focus zoom on iOS. */
+    min-height: 44px; box-sizing: border-box;
 }
-[data-testid="stRadio"] label:has(input) {
-    flex: 1; padding: .6rem .8rem; border-radius: 8px; margin: 0; color: #FFFFFF;
-}
-[data-testid="stRadio"] label:has(input) p { color: inherit; font-weight: 650; }
-[data-testid="stRadio"] label:has(input:checked) {
-    background: var(--accent); color: var(--ink);
-}
-button[kind="primary"] {
-    background: var(--accent); color: var(--ink); border: 1px solid var(--accent);
-    border-radius: 9px; font-weight: 650;
-}
-button[kind="primary"]:hover { background: #e7b72e; color: var(--ink); border-color: #d4a520; }
-button[kind="primary"]:active { color: var(--ink); }
-button[kind="secondary"] {
-    background: #FFFFFF; color: var(--ink); border-color: #cecec7; border-radius: 9px;
-}
-button[kind="secondary"]:hover { background: #efefeb; color: var(--ink); border-color: #aaa99f; }
-.st-key-review_actions button { min-height: 3.3rem; }
-button:focus-visible, input:focus-visible, textarea:focus-visible {
-    outline: 2px solid var(--ink); outline-offset: 2px;
-}
-[data-testid="stAlertContainer"] { border-radius: 10px; }
-[data-testid="stAlertContainer"]:has([data-testid="stAlertContentInfo"]) {
-    background: #efefeb; color: var(--ink); border-left: 3px solid var(--accent);
-}
-[data-testid="stTable"] { background: #FFFFFF; border-radius: 10px; overflow-x: auto; }
-[data-testid="stTable"] th { background: var(--ink); color: #FFFFFF; }
-[data-testid="stTable"] td { border-color: var(--line); }
+:is(.st-key-person_details, .st-key-contract_details, .st-key-optional_details) input::placeholder { color: var(--contract-muted); opacity: 1; }
+.st-key-contract_details [role="group"] > span { color: var(--contract-ink); }
+.st-key-contract_details button[aria-haspopup="dialog"] { background: #f7f7f5; color: var(--contract-ink); min-width: 44px; min-height: 44px; }
+.st-key-demo_mode [role="radiogroup"] { background: #242424; padding: .25rem; border-radius: 10px; }
+.st-key-demo_mode [role="radiogroup"] label { color: #fff; padding: .4rem .65rem; border-radius: 7px; }
+.st-key-demo_mode [role="radiogroup"] label p { color: inherit; font-weight: 600; }
+.st-key-demo_mode [role="radiogroup"] label:has(input:checked) { color: #242424; background: #f4c542; }
+.st-key-ai_unavailable button:disabled { color: #595952; background: #eaeae5; border: 1px solid #b7b7af; opacity: 1; }
+.st-key-review_actions button, .st-key-contract_download button { min-height: 44px; white-space: normal; height: auto; padding-block: .55rem; }
+.st-key-review_contract button, .st-key-contract_download button { background: #f4c542; color: #242424; border: 1px solid #b48a13; }
+.st-key-review_contract button p, .st-key-contract_download button p { color: inherit; }
+.st-key-contract_app :is(button, input, [role="combobox"], [role="spinbutton"]):focus-visible { outline: 2px solid #997300; outline-offset: 2px; }
 @media (max-width: 640px) {
-    .stMainBlockContainer { padding: 4rem 1rem 1rem; }
-    .stMainBlockContainer h1 { font-size: 2rem; }
-    [data-testid="stRadio"] label:has(input) { padding: .5rem; }
-    .st-key-review_actions button { min-height: 3rem; }
+    .st-key-contract_app h1 { font-size: 1.7rem; line-height: 1.2; padding-block: .2rem; }
+    .st-key-contract_app h3 { font-size: 1rem; }
+    :is(.st-key-person_details, .st-key-contract_details, .st-key-optional_details) { padding: .65rem; border-radius: 10px; }
+    .st-key-contract_app p { line-height: 1.5; }
 }

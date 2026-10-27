@@ -4,3 +4,33 @@ gatherUsageStats = false
 showErrorDetails = "none"
 [server]
 enableStaticServing = false
+
+[theme]
+base = "light"
+primaryColor = "#997300"
+backgroundColor = "#F7F7F5"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#242424"
+baseFontSize = 16
+paddingTop = "0.75rem"
+paddingBottom = "0.75rem"
+showWidgetBorder = true
+borderColor = "#b7b7af"
+yellowTextColor = "#614800"
+yellowBackgroundColor = "#fff3bd"
+redTextColor = "#9c1e1e"
+redBackgroundColor = "#fff0ef"
+blueTextColor = "#174b78"
+blueBackgroundColor = "#eaf3fa"
+
+[theme.dark]
+backgroundColor = "#171917"
+secondaryBackgroundColor = "#292d29"
+textColor = "#F5F5F1"
+primaryColor = "#F4C542"
+yellowTextColor = "#ffe6a1"
+yellowBackgroundColor = "#463b1c"
+redTextColor = "#ffd0d0"
+redBackgroundColor = "#4a2525"
+blueTextColor = "#d0e7ff"
+blueBackgroundColor = "#20374a"
